@@ -130,7 +130,7 @@ function mousePressed() {
 
     } else if (sound2.isPlaying()) {
       sound2.stop();
-      sound3.play();
+      sound3.loop();
       bool_button2 = 7;
     } else if (sound3.isPlaying()) {
       sound3.stop();
