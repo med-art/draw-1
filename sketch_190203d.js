@@ -248,8 +248,8 @@ function segment(rakeX, rakeY, a, rake) {
 }
 
 
-function windowResized() {
-
-  setup();
-
-}
+// function windowResized() {
+//
+//   setup();
+//
+// }
