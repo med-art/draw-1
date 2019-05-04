@@ -17,6 +17,7 @@ var tempID = [];
 
 // declare all brush variables
 var rakeX = 0, rakeY = 0, rake2X = 0, rake2Y = 0, rake3X = 0, rake3Y = 0, angle1, segLength;
+var offsetX = 0, offsetY = 0;
 
 
 //button spacing
@@ -204,7 +205,7 @@ function mouseDragged() {
     rake3X = mouseX - (cos(angle1) * (segLength/2));
     rake3Y = mouseY - (sin(angle1) * (segLength/2));
 
-    segment(rake3X, rake3Y, angle1, img_brush)
+    segment(rake3X, rake3Y, angle1, img_brush, offsetX, -(width/40))
 
 
 
@@ -221,7 +222,7 @@ function mouseDragged() {
     rakeX = mouseX - (cos(angle1) * segLength);
     rakeY = mouseY - (sin(angle1) * segLength);
 
-    segment(rakeX, rakeY, angle1, img_rake)
+    segment(rakeX, rakeY, angle1, img_rake, offsetX,  -(width/40))
   }
 
   if (bool_button1 === 2) {
@@ -233,17 +234,17 @@ function mouseDragged() {
     rake2X = mouseX - (cos(angle1) * segLength);
     rake2Y = mouseY - (sin(angle1) * segLength);
 
-    segment(rake2X, rake2Y, angle1, img_rake2)
+    segment(rake2X, rake2Y, angle1, img_rake2, offsetX, -(width/20))
   }
 
   return false;
 }
 
-function segment(rakeX, rakeY, a, rake) {
+function segment(rakeX, rakeY, a, rake, offsetX, offsetY) {
   push();
   translate(rakeX, rakeY);
   rotate(a);
-  image(rake, 0, -50, 0, 0);
+  image(rake, offsetX, offsetY, 0, 0);
   pop();
 }
 
