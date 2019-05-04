@@ -78,9 +78,9 @@ function setup() {
 
   // set button margin and spacing relative to the windowWidth
 
-margin = width / 11;
-buttonWidth = width / 17;
-buttonSpacing = width / 15;
+margin = width / 10;
+buttonWidth = width / 12;
+buttonSpacing = width / 11;
 
 
 }
