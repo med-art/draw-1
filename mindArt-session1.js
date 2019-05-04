@@ -78,7 +78,7 @@ function setup() {
 
   // set button margin and spacing relative to the windowWidth
 
-margin = width / 10;
+margin = width / 40;
 buttonWidth = width / 12;
 buttonSpacing = width / 11;
 
@@ -93,9 +93,9 @@ function draw() {
     image(pebbleu[tempID[k]], tempX[k], tempY[k], randomScalar[k], randomScalar[k]);
   }
 
-  image(gui_img[bool_button1 + 1], width - margin, (height/2)-buttonSpacing, buttonWidth, buttonWidth);
-  image(gui_img[bool_button2], width - margin, height/2, buttonWidth, buttonWidth)
-  image(gui_img[8], width - margin, (height/2)+buttonSpacing, buttonWidth, buttonWidth);
+  image(gui_img[bool_button1 + 1], margin, (height/2)-buttonSpacing, buttonWidth, buttonWidth);
+  image(gui_img[bool_button2], margin, height/2, buttonWidth, buttonWidth)
+  image(gui_img[8], margin, (height/2)+buttonSpacing, buttonWidth, buttonWidth);
 
 
 
@@ -105,7 +105,7 @@ function draw() {
 function mousePressed() {
 
   //button1 distance recorder
-  let d = dist(mouseX, mouseY, width-margin+(buttonWidth/2), (height/2)-buttonSpacing+(buttonWidth/2));
+  let d = dist(mouseX, mouseY, margin+(buttonWidth/2), (height/2)-buttonSpacing+(buttonWidth/2));
   if (d < buttonWidth/2) {
 
 
@@ -120,7 +120,7 @@ function mousePressed() {
   }
 
   //button2 distance recorder
-  let d2 = dist(mouseX, mouseY, width-margin+(buttonWidth/2), (height/2)+(buttonWidth/2));
+  let d2 = dist(mouseX, mouseY, margin+(buttonWidth/2), (height/2)+(buttonWidth/2));
   if (d2 < buttonWidth/2) {
     if (sound1.isPlaying()) {
       sound1.stop();
@@ -144,7 +144,7 @@ function mousePressed() {
 
 
   //button3 distance recorder
-  let d3 = dist(mouseX, mouseY, width-margin+(buttonWidth/2), (height/2)+buttonSpacing+(buttonWidth/2));
+  let d3 = dist(mouseX, mouseY, margin+(buttonWidth/2), (height/2)+buttonSpacing+(buttonWidth/2));
   if (d3 < buttonWidth/2) {
     image(img_background, 0, 0, width, height);
 
