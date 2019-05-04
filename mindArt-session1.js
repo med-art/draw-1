@@ -68,13 +68,13 @@ function setup() {
 
 
 
-  img_brush.resize(width/15, width/20);
+  img_brush.resize(width/12, width/20);
 
-  img_rake.resize(width/30, width/15);
+  img_rake.resize(width/40, width/15);
 
 
 
-  img_rake2.resize(width/60, width/10);
+  img_rake2.resize(width/50, width/10);
 
   // set button margin and spacing relative to the windowWidth
 
