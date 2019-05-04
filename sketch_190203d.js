@@ -55,7 +55,7 @@ function preload() {
 function setup() {
   // frameRate(1000);
   createCanvas(windowWidth, windowHeight);
-  //pixelDensity(1); // effectively ignores retina displays
+  pixelDensity(1); // effectively ignores retina displays
   img_background.loadPixels();
   //  tint(255, 50); // opacity control for future version
   image(img_background, 0, 0, width, height);
