@@ -63,7 +63,7 @@ function setup() {
 
 
 
-  segLength = width / 15;
+  segLength = width / 20;
 
 
 
