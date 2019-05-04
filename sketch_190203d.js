@@ -64,13 +64,13 @@ function setup() {
 
 
 
-  segLength = width / 20;
+  segLength = width / 40;
 
 
 
-  img_brush.resize(width/30, width/20);
+  img_brush.resize(width/15, width/20);
 
-  img_rake.resize(width/30, width/20);
+  img_rake.resize(width/30, width/15);
 
 
 
@@ -205,7 +205,7 @@ function mouseDragged() {
     rake3X = mouseX - (cos(angle1) * (segLength/2));
     rake3Y = mouseY - (sin(angle1) * (segLength/2));
 
-    segment(rake3X, rake3Y, angle1, img_brush, offsetX, -(width/40))
+    segment(rake3X, rake3Y, angle1, img_brush, -(width/30), -(width/40))
 
 
 
@@ -222,7 +222,7 @@ function mouseDragged() {
     rakeX = mouseX - (cos(angle1) * segLength);
     rakeY = mouseY - (sin(angle1) * segLength);
 
-    segment(rakeX, rakeY, angle1, img_rake, offsetX,  -(width/40))
+    segment(rakeX, rakeY, angle1, img_rake, offsetX,  -(width/30))
   }
 
   if (bool_button1 === 2) {
