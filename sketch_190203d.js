@@ -1,3 +1,5 @@
+//screen bHeight 2560 1440
+
 var img_background, img_brush, img_rake; // all images
 var sound1, sound2; // wind, trees, etc
 var bool_button1 = 0; // bool_button1ean toggle
@@ -6,22 +8,27 @@ var gui_img = [];
 var pebble = [];
 var pebbleu = [];
 var tempX = [];
-var tempY= [];
+var tempY = [];
 var tempX2 = 0;
 var tempY2 = 0;
 var tempcount = 0;
 var randomScalar = [];
 var tempID = [];
-var rakeX = 200,
-  rakeY = 200,
-  rake2X = 20,
-  rake2Y = 20,
-  rake3X = 40,
-  rake3Y = 40,
-  angle1 = 0,
-  segLength = 40;
+
+// declare all brush variables
+var rakeX = 0, rakeY = 0, rake2X = 0, rake2Y = 0, rake3X = 0, rake3Y = 0, angle1, segLength;
+
+
+//button spacing
+//margin from right
+var margin, buttonWidth, buttonSpacing;
+
+
 
 function preload() {
+
+// brush loads
+
   img_brush = loadImage('assets/brush.png');
   img_rake = loadImage('assets/rake1.png');
   img_rake2 = loadImage('assets/rake2.png');
@@ -49,21 +56,45 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   pixelDensity(1); // effectively ignores retina displays
   img_background.loadPixels();
-//  tint(255, 50); // opacity control for future version
-  image(img_background, 0, 0, windowWidth, windowHeight);
+  //  tint(255, 50); // opacity control for future version
+  image(img_background, 0, 0, width, height);
   //  image(gui_img[4], width - 300, 450, 150, 150);
-//  img_background.resize(windowWidth, windowHeight);
+  //  img_background.resize(width, height);
+
+
+
+  segLength = width / 15;
+
+
+
+  img_brush.resize(width/30, width/20);
+
+  img_rake.resize(width/30, width/20);
+
+
+
+  img_rake2.resize(width/60, width/10);
+
+  // set button margin and spacing relative to the windowWidth
+
+margin = width / 11;
+buttonWidth = width / 17;
+buttonSpacing = width / 15;
+
 
 }
 
+
 function draw() {
+
   blendMode(BLEND);
   for (var k = 0; k < tempcount; k++) {
     image(pebbleu[tempID[k]], tempX[k], tempY[k], randomScalar[k], randomScalar[k]);
   }
-  image(gui_img[bool_button1+1], width - 150, 240, 120, 120);
-  image(gui_img[bool_button2], width - 150, 370, 120, 120)
-  image(gui_img[8], width - 150, 500, 120, 120);
+
+  image(gui_img[bool_button1 + 1], width - margin, (height/2)-buttonSpacing, buttonWidth, buttonWidth);
+  image(gui_img[bool_button2], width - margin, height/2, buttonWidth, buttonWidth)
+  image(gui_img[8], width - margin, (height/2)+buttonSpacing, buttonWidth, buttonWidth);
 
 
 
@@ -73,8 +104,8 @@ function draw() {
 function mousePressed() {
 
   //button1 distance recorder
-  let d = dist(mouseX, mouseY, width - 90, 300);
-  if (d < 60) {
+  let d = dist(mouseX, mouseY, width-margin+(buttonWidth/2), (height/2)-buttonSpacing+(buttonWidth/2));
+  if (d < buttonWidth/2) {
 
 
     bool_button1++;
@@ -88,8 +119,8 @@ function mousePressed() {
   }
 
   //button2 distance recorder
-  let d2 = dist(mouseX, mouseY, width - 90, 430);
-  if (d2 < 60) {
+  let d2 = dist(mouseX, mouseY, width-margin+(buttonWidth/2), (height/2)+(buttonWidth/2));
+  if (d2 < buttonWidth/2) {
     if (sound1.isPlaying()) {
       sound1.stop();
       sound2.loop();
@@ -112,25 +143,25 @@ function mousePressed() {
 
 
   //button3 distance recorder
-  let d3 = dist(mouseX, mouseY, width - 90, 560);
-  if (d3 < 60) {
-    image(img_background, 0, 0, windowWidth, windowHeight);
+  let d3 = dist(mouseX, mouseY, width-margin+(buttonWidth/2), (height/2)+buttonSpacing+(buttonWidth/2));
+  if (d3 < buttonWidth/2) {
+    image(img_background, 0, 0, width, height);
 
     // basic random counter to determine how many pebbles will be present on the screen;
-  tempcount = int(random(0, 3));
+    tempcount = int(random(0, 3));
 
 
 
     // now a loop based on that random number, to place the pebbles on screen
     for (var k = 0; k < tempcount; k++) {
-  randomScalar[k] = int(random(120, 350)); // scale
+      randomScalar[k] = int(random(120, 350)); // scale
       tempID[k] = int(random(1, 7)); // which pebble iteration
-     tempX[k] = int(random(0, windowWidth-randomScalar[k]));
-    tempY[k] = int(random(0, windowHeight-randomScalar[k]));
+      tempX[k] = int(random(0, width - randomScalar[k]));
+      tempY[k] = int(random(0, height - randomScalar[k]));
 
 
 
-  image(pebble[tempID[k]], tempX[k], tempY[k], randomScalar[k], randomScalar[k]);
+      image(pebble[tempID[k]], tempX[k], tempY[k], randomScalar[k], randomScalar[k]);
 
     }
 
@@ -170,8 +201,8 @@ function mouseDragged() {
     dx = mouseX - rake3X;
     dy = mouseY - rake3Y;
     angle1 = atan2(dy, dx);
-    rake3X = mouseX  - (cos(angle1) * segLength);
-    rake3Y = mouseY  - (sin(angle1) * segLength);
+    rake3X = mouseX - (cos(angle1) * (segLength/2));
+    rake3Y = mouseY - (sin(angle1) * (segLength/2));
 
     segment(rake3X, rake3Y, angle1, img_brush)
 
@@ -181,6 +212,7 @@ function mouseDragged() {
   }
 
   if (bool_button1 === 1) {
+
     blendMode(OVERLAY);
 
     dx = mouseX - rakeX;
@@ -213,4 +245,11 @@ function segment(rakeX, rakeY, a, rake) {
   rotate(a);
   image(rake, 0, -50, 0, 0);
   pop();
+}
+
+
+function windowResized() {
+
+  setup();
+
 }
