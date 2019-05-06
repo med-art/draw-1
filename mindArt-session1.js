@@ -155,7 +155,7 @@ function mousePressed() {
 
     // now a loop based on that random number, to place the pebbles on screen
     for (var k = 0; k < tempcount; k++) {
-      randomScalar[k] = int(random(120, 350)); // scale
+      randomScalar[k] = int(random(120, 210)); // scale
       tempID[k] = int(random(1, 7)); // which pebble iteration
       tempX[k] = int(random(0, width - randomScalar[k]));
       tempY[k] = int(random(0, height - randomScalar[k]));
